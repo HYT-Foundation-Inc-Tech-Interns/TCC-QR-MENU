@@ -179,30 +179,44 @@
   }
   hintTimer = setTimeout(hideHint, 6000);
 
-  // ---------- QR code auto-generation ----------
+  // ---------- QR code auto-generation (client-side) ----------
   const qrTrigger = document.getElementById("qrTrigger");
   const qrModal = document.getElementById("qrModal");
+  const qrPlaceholder = document.getElementById("qrPlaceholder");
+  const qrCaption = document.getElementById("qrCaption");
+  const qrSub = document.getElementById("qrSub");
+  let qrInstance = null;
 
-  function getCurrentUrl() {
-    return window.location.href;
-  }
+  function generateQr() {
+    const url = window.location.href;
 
-  function generateQrCodeUrl(url) {
-    return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=${encodeURIComponent(url)}`;
+    // Clear previous QR if any
+    qrPlaceholder.innerHTML = "";
+    qrInstance = null;
+
+    if (typeof QRCode !== "undefined") {
+      // QRCode.js draws into a canvas or img inside the target element
+      qrInstance = new QRCode(qrPlaceholder, {
+        text: url,
+        width: 180,
+        height: 180,
+        colorDark: "#3b2417",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.M,
+      });
+      qrCaption.textContent = "Scan to open this menu on your phone";
+    } else {
+      // Fallback: show URL as text if library failed to load
+      qrPlaceholder.innerHTML = `<p style="font-size:0.8rem;color:var(--muted);padding:20px;">QR library not loaded</p>`;
+      qrCaption.textContent = "Scan to open this menu on your phone";
+    }
+
+    qrSub.textContent = url;
   }
 
   qrTrigger.addEventListener("click", () => {
     qrModal.hidden = false;
-    const placeholder = qrModal.querySelector(".qr-placeholder");
-    const caption = qrModal.querySelector(".qr-caption");
-    const sub = qrModal.querySelector(".qr-sub");
-
-    const url = getCurrentUrl();
-    const qrSrc = generateQrCodeUrl(url);
-
-    placeholder.innerHTML = `<img src="${qrSrc}" alt="QR code for ${url}" width="180" height="180" />`;
-    caption.textContent = "Scan to open this menu on your phone";
-    sub.textContent = url;
+    generateQr();
   });
 
   qrModal.addEventListener("click", (e) => {

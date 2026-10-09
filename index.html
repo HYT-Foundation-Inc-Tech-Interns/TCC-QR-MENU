@@ -74,31 +74,18 @@
     <div class="qr-backdrop" data-close-qr></div>
     <div class="qr-card">
       <button class="qr-close" data-close-qr aria-label="Close">&times;</button>
-      <div class="qr-placeholder" aria-label="QR code placeholder">
-        <svg viewBox="0 0 100 100" width="180" height="180" aria-hidden="true">
-          <rect width="100" height="100" fill="#fff"/>
-          <g fill="#3b2417">
-            <rect x="5" y="5" width="22" height="22"/><rect x="9" y="9" width="14" height="14" fill="#fff"/><rect x="13" y="13" width="6" height="6"/>
-            <rect x="73" y="5" width="22" height="22"/><rect x="77" y="9" width="14" height="14" fill="#fff"/><rect x="81" y="13" width="6" height="6"/>
-            <rect x="5" y="73" width="22" height="22"/><rect x="9" y="77" width="14" height="14" fill="#fff"/><rect x="13" y="81" width="6" height="6"/>
-            <rect x="33" y="9" width="4" height="4"/><rect x="41" y="13" width="4" height="4"/><rect x="49" y="9" width="4" height="4"/><rect x="57" y="13" width="4" height="4"/><rect x="65" y="9" width="4" height="4"/>
-            <rect x="33" y="17" width="4" height="4"/><rect x="45" y="21" width="4" height="4"/><rect x="53" y="17" width="4" height="4"/>
-            <rect x="9" y="33" width="4" height="4"/><rect x="17" y="37" width="4" height="4"/><rect x="25" y="33" width="4" height="4"/><rect x="33" y="37" width="4" height="4"/><rect x="41" y="33" width="4" height="4"/><rect x="49" y="37" width="4" height="4"/><rect x="57" y="33" width="4" height="4"/><rect x="65" y="37" width="4" height="4"/><rect x="73" y="33" width="4" height="4"/><rect x="81" y="37" width="4" height="4"/><rect x="89" y="33" width="4" height="4"/>
-            <rect x="13" y="45" width="4" height="4"/><rect x="21" y="49" width="4" height="4"/><rect x="33" y="45" width="4" height="4"/><rect x="45" y="49" width="4" height="4"/><rect x="57" y="45" width="4" height="4"/><rect x="69" y="49" width="4" height="4"/><rect x="81" y="45" width="4" height="4"/>
-            <rect x="9" y="57" width="4" height="4"/><rect x="25" y="57" width="4" height="4"/><rect x="37" y="57" width="4" height="4"/><rect x="49" y="57" width="4" height="4"/><rect x="61" y="57" width="4" height="4"/><rect x="73" y="57" width="4" height="4"/><rect x="89" y="57" width="4" height="4"/>
-            <rect x="33" y="69" width="4" height="4"/><rect x="41" y="73" width="4" height="4"/><rect x="49" y="69" width="4" height="4"/><rect x="57" y="73" width="4" height="4"/><rect x="65" y="69" width="4" height="4"/>
-            <rect x="37" y="81" width="4" height="4"/><rect x="49" y="85" width="4" height="4"/><rect x="61" y="81" width="4" height="4"/><rect x="73" y="85" width="4" height="4"/><rect x="85" y="81" width="4" height="4"/>
-            <rect x="41" y="89" width="4" height="4"/><rect x="57" y="89" width="4" height="4"/><rect x="69" y="89" width="4" height="4"/>
-          </g>
-        </svg>
+      <div class="qr-placeholder" id="qrPlaceholder" aria-label="QR code">
+        <!-- QR code injected here by JS -->
       </div>
-      <p class="qr-caption">Scan to open this menu on your phone</p>
-      <p class="qr-sub">Replace this placeholder with your actual QR code.</p>
+      <p class="qr-caption" id="qrCaption">Scan to open this menu on your phone</p>
+      <p class="qr-sub" id="qrSub"></p>
     </div>
   </div>
 
   <!-- PDF.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- QRCode.js for client-side QR generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
