@@ -49,20 +49,24 @@
       const pdf = await pdfjsLib.getDocument("menu.pdf").promise;
       const total = pdf.numPages;
 
+      // Pre-create placeholder slots so layout is stable as pages stream in
+      pages = new Array(total).fill(null);
+      buildPlaceholders(total);
+
+      // Render all pages in parallel — each page shows as soon as it's done
+      const renderers = [];
       for (let i = 1; i <= total; i++) {
-        const page = await pdf.getPage(i);
-        const viewport = page.getViewport({ scale: 2 });
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-        await page.render({ canvasContext: ctx, viewport }).promise;
-        pages.push({ img: canvas.toDataURL("image/jpeg", 0.9), bg: sampleBackground(canvas) });
+        renderers.push(renderPage(pdf, i));
       }
 
-      buildPages();
+      // Reveal the loader only until the first page is ready
+      await renderers[0];
+
       loader.hidden = true;
       updateUI();
+
+      // Let the rest finish in the background
+      await Promise.all(renderers);
     } catch (err) {
       console.error("Failed to load PDF:", err);
       loader.hidden = true;
@@ -70,22 +74,50 @@
     }
   }
 
+  async function renderPage(pdf, pageNum) {
+    const page = await pdf.getPage(pageNum);
+    const viewport = page.getViewport({ scale: 1.5 });
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d", { alpha: false });
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    await page.render({ canvasContext: ctx, viewport }).promise;
+
+    const data = {
+      img: canvas.toDataURL("image/jpeg", 0.85),
+      bg: sampleBackground(canvas),
+    };
+    pages[pageNum - 1] = data;
+    fillPlaceholder(pageNum - 1, data);
+  }
+
   // ---------- Build page elements ----------
-  function buildPages() {
+  function buildPlaceholders(total) {
     scrollTrack.innerHTML = "";
-    pages.forEach((p, i) => {
+    for (let i = 0; i < total; i++) {
       const item = document.createElement("div");
       item.className = "page-item";
       item.dataset.page = i;
 
-      const img = document.createElement("img");
-      img.src = p.img;
-      img.alt = `Menu page ${i + 1}`;
-      img.style.background = p.bg;
-      item.appendChild(img);
+      const placeholder = document.createElement("div");
+      placeholder.className = "page-placeholder";
+      item.appendChild(placeholder);
 
       scrollTrack.appendChild(item);
-    });
+    }
+  }
+
+  function fillPlaceholder(index, data) {
+    const item = scrollTrack.querySelector(`.page-item[data-page="${index}"]`);
+    if (!item) return;
+    item.innerHTML = "";
+
+    const img = document.createElement("img");
+    img.src = data.img;
+    img.alt = `Menu page ${index + 1}`;
+    img.style.background = data.bg;
+    img.decoding = "async";
+    item.appendChild(img);
   }
 
   // ---------- Scroll tracking ----------

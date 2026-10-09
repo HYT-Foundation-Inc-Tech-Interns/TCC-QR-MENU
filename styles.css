@@ -95,6 +95,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   box-shadow: var(--shadow-page);
   background: var(--paper);
 }
+.page-placeholder {
+  height: 100%;
+  width: 40vw;
+  max-width: 300px;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.06);
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+@keyframes shimmer { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.15; } }
 
 /* ---------- Nav buttons ---------- */
 .nav-btn {
