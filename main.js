@@ -21,8 +21,6 @@
   var scrollContainer = document.getElementById("scrollContainer");
   var scrollTrack = document.getElementById("scrollTrack");
   var loader = document.getElementById("loader");
-  var navPrev = document.getElementById("navPrev");
-  var navNext = document.getElementById("navNext");
   var pageCounter = document.getElementById("pageCounter");
   var hint = document.getElementById("hint");
 
@@ -90,8 +88,6 @@
   function updateUI() {
     var total = PAGES.length;
     pageCounter.textContent = (currentPage + 1) + " / " + total;
-    navPrev.disabled = (currentPage <= 0);
-    navNext.disabled = (currentPage >= total - 1);
   }
 
   // ---------- Scroll event (throttled via rAF) ----------
@@ -110,32 +106,14 @@
     }
   });
 
-  // ---------- Nav buttons ----------
-  navPrev.addEventListener("click", function () {
-    hideHint();
-    if (currentPage > 0) {
-      currentPage--;
-      scrollToPage(currentPage);
-      updateUI();
-    }
-  });
-  navNext.addEventListener("click", function () {
-    hideHint();
-    if (currentPage < PAGES.length - 1) {
-      currentPage++;
-      scrollToPage(currentPage);
-      updateUI();
-    }
-  });
-
   // ---------- Keyboard ----------
   document.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+    if (e.key === "ArrowUp") {
       e.preventDefault();
       hideHint();
       if (currentPage > 0) { currentPage--; scrollToPage(currentPage); updateUI(); }
     }
-    else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+    else if (e.key === "ArrowDown") {
       e.preventDefault();
       hideHint();
       if (currentPage < PAGES.length - 1) { currentPage++; scrollToPage(currentPage); updateUI(); }
