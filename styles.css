@@ -78,13 +78,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   scroll-snap-align: center;
   scroll-snap-stop: always;
   overflow: hidden;
-  background: #2a1810;
 }
 .page-item img {
   height: 100%;
-  width: auto;
+  width: 100%;
   max-width: none;
-  object-fit: contain;
+  max-height: none;
+  object-fit: cover;
   object-position: center;
 }
 .page-placeholder {
