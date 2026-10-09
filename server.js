@@ -22,7 +22,7 @@ const MIME = {
 
 const server = http.createServer((req, res) => {
   let urlPath = req.url.split("?")[0];
-  if (urlPath === "/") urlPath = "/menu.html";
+  if (urlPath === "/") urlPath = "/index.html";
   const filePath = path.join(DIR, decodeURIComponent(urlPath));
   if (!filePath.startsWith(DIR)) { res.writeHead(403); res.end("Forbidden"); return; }
   fs.readFile(filePath, (err, data) => {
