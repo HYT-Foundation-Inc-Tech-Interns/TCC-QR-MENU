@@ -71,20 +71,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ---------- Each page ---------- */
 .page-item {
   flex: 0 0 auto;
-  height: 100vh; height: 100dvh;
   width: 100vw;
+  height: 100vh; height: 100dvh;
   display: flex; align-items: center; justify-content: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   overflow: hidden;
 }
 .page-item img {
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  height: 100vh; height: 100dvh;
   max-width: none;
   max-height: none;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
 }
 .page-placeholder {
   height: 100%;
