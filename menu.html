@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#3b2417" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Coffee Circle" />
+  <title>The Coffee Circle — Digital Menu</title>
+  <meta name="description" content="The Coffee Circle digital menu." />
+  <link rel="icon" type="image/jpeg" href="assets/TCC-LOGO.jpg" />
+  <link rel="shortcut icon" href="assets/TCC-LOGO.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="menu" id="menu" aria-label="Menu">
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <button class="icon-btn" id="qrTrigger" aria-label="Scan QR code">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <path d="M14 14h3v3M21 14v.01M14 21h.01M21 17v4M17 21h4"/>
+        </svg>
+      </button>
+      <div class="page-counter" id="pageCounter">1 / 1</div>
+    </div>
+
+    <!-- Scroll container -->
+    <div class="scroll-container" id="scrollContainer">
+      <div class="scroll-track" id="scrollTrack">
+        <!-- Pages injected here by JS -->
+      </div>
+    </div>
+
+    <!-- Nav arrows -->
+    <button class="nav-btn nav-prev" id="navPrev" aria-label="Previous page">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <button class="nav-btn nav-next" id="navNext" aria-label="Next page">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+      <div class="spinner"></div>
+      <p>Loading menu…</p>
+    </div>
+
+    <!-- Hint -->
+    <div class="hint" id="hint">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 18l6-6-6-6"/></svg>
+      <span>Swipe or scroll to browse pages</span>
+    </div>
+  </main>
+
+  <!-- Empty state -->
+  <div class="empty-state" id="emptyState" hidden>
+    <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+    </svg>
+    <h3>Could not load menu</h3>
+    <p>Run <strong>Start Menu.bat</strong> or <code>node server.js</code></p>
+  </div>
+
+  <!-- QR Modal -->
+  <div class="qr-modal" id="qrModal" hidden role="dialog" aria-modal="true" aria-label="QR code">
+    <div class="qr-backdrop" data-close-qr></div>
+    <div class="qr-card">
+      <button class="qr-close" data-close-qr aria-label="Close">&times;</button>
+      <div class="qr-placeholder" aria-label="QR code placeholder">
+        <svg viewBox="0 0 100 100" width="180" height="180" aria-hidden="true">
+          <rect width="100" height="100" fill="#fff"/>
+          <g fill="#3b2417">
+            <rect x="5" y="5" width="22" height="22"/><rect x="9" y="9" width="14" height="14" fill="#fff"/><rect x="13" y="13" width="6" height="6"/>
+            <rect x="73" y="5" width="22" height="22"/><rect x="77" y="9" width="14" height="14" fill="#fff"/><rect x="81" y="13" width="6" height="6"/>
+            <rect x="5" y="73" width="22" height="22"/><rect x="9" y="77" width="14" height="14" fill="#fff"/><rect x="13" y="81" width="6" height="6"/>
+            <rect x="33" y="9" width="4" height="4"/><rect x="41" y="13" width="4" height="4"/><rect x="49" y="9" width="4" height="4"/><rect x="57" y="13" width="4" height="4"/><rect x="65" y="9" width="4" height="4"/>
+            <rect x="33" y="17" width="4" height="4"/><rect x="45" y="21" width="4" height="4"/><rect x="53" y="17" width="4" height="4"/>
+            <rect x="9" y="33" width="4" height="4"/><rect x="17" y="37" width="4" height="4"/><rect x="25" y="33" width="4" height="4"/><rect x="33" y="37" width="4" height="4"/><rect x="41" y="33" width="4" height="4"/><rect x="49" y="37" width="4" height="4"/><rect x="57" y="33" width="4" height="4"/><rect x="65" y="37" width="4" height="4"/><rect x="73" y="33" width="4" height="4"/><rect x="81" y="37" width="4" height="4"/><rect x="89" y="33" width="4" height="4"/>
+            <rect x="13" y="45" width="4" height="4"/><rect x="21" y="49" width="4" height="4"/><rect x="33" y="45" width="4" height="4"/><rect x="45" y="49" width="4" height="4"/><rect x="57" y="45" width="4" height="4"/><rect x="69" y="49" width="4" height="4"/><rect x="81" y="45" width="4" height="4"/>
+            <rect x="9" y="57" width="4" height="4"/><rect x="25" y="57" width="4" height="4"/><rect x="37" y="57" width="4" height="4"/><rect x="49" y="57" width="4" height="4"/><rect x="61" y="57" width="4" height="4"/><rect x="73" y="57" width="4" height="4"/><rect x="89" y="57" width="4" height="4"/>
+            <rect x="33" y="69" width="4" height="4"/><rect x="41" y="73" width="4" height="4"/><rect x="49" y="69" width="4" height="4"/><rect x="57" y="73" width="4" height="4"/><rect x="65" y="69" width="4" height="4"/>
+            <rect x="37" y="81" width="4" height="4"/><rect x="49" y="85" width="4" height="4"/><rect x="61" y="81" width="4" height="4"/><rect x="73" y="85" width="4" height="4"/><rect x="85" y="81" width="4" height="4"/>
+            <rect x="41" y="89" width="4" height="4"/><rect x="57" y="89" width="4" height="4"/><rect x="69" y="89" width="4" height="4"/>
+          </g>
+        </svg>
+      </div>
+      <p class="qr-caption">Scan to open this menu on your phone</p>
+      <p class="qr-sub">Replace this placeholder with your actual QR code.</p>
+    </div>
+  </div>
+
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
