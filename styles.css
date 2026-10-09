@@ -55,27 +55,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ---------- Scroll container ---------- */
 .scroll-container {
   position: fixed; inset: 0;
-  overflow-x: auto; overflow-y: hidden;
+  overflow-x: hidden; overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: y mandatory;
 }
 .scroll-container::-webkit-scrollbar { display: none; }
 
 .scroll-track {
-  display: flex; flex-direction: row;
+  display: flex; flex-direction: column;
   gap: 0;
   padding: 0;
-  height: 100%;
 }
 
 /* ---------- Each page ---------- */
 .page-item {
-  flex: 0 0 100vw;
+  flex: 0 0 auto;
   height: 100vh; height: 100dvh;
   width: 100vw;
   display: flex; align-items: center; justify-content: center;
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   scroll-snap-stop: always;
   overflow: hidden;
 }
