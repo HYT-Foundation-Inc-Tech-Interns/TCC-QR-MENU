@@ -11,9 +11,6 @@
   <meta name="description" content="The Coffee Circle digital menu." />
   <link rel="icon" type="image/jpeg" href="assets/TCC-LOGO.jpg" />
   <link rel="shortcut icon" href="assets/TCC-LOGO.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -22,13 +19,6 @@
 
     <!-- Top bar -->
     <div class="topbar">
-      <button class="icon-btn" id="qrTrigger" aria-label="Scan QR code">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-          <rect x="3" y="14" width="7" height="7" rx="1"/>
-          <path d="M14 14h3v3M21 14v.01M14 21h.01M21 17v4M17 21h4"/>
-        </svg>
-      </button>
       <div class="page-counter" id="pageCounter">1 / 1</div>
     </div>
 
@@ -69,29 +59,6 @@
     <p>Run <strong>Start Menu.bat</strong> or <code>node server.js</code></p>
   </div>
 
-  <!-- QR Modal -->
-  <!--
-  <div class="qr-modal" id="qrModal" hidden role="dialog" aria-modal="true" aria-label="QR code">
-    <div class="qr-backdrop" data-close-qr></div>
-    <div class="qr-card">
-      <button class="qr-close" data-close-qr aria-label="Close">&times;</button>
-      <div class="qr-placeholder" id="qrPlaceholder" aria-label="QR code">
-  -->      
-           <!-- QR code injected here by JS -->
-  <!--    
-      </div>
-      <p class="qr-caption" id="qrCaption">Scan to open this menu on your phone</p>
-      <p class="qr-sub" id="qrSub"></p>
-    </div>
-  </div>
-  -->
-
-  <!-- PDF data (base64-embedded, no server needed) -->
-  <script src="pdf-data.js"></script>
-  <!-- PDF.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <!-- QRCode.js for client-side QR generation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

@@ -1,0 +1,26 @@
+{
+  "name": "tcc-menu",
+  "version": "1.0.0",
+  "description": "A digital menu web app for The Coffee Circle. Renders a PDF menu (`menu.pdf`) as scrollable image pages using PDF.js, with QR code generation for sharing.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HYT-Foundation-Inc-Tech-Interns/TCC-QR-MENU.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HYT-Foundation-Inc-Tech-Interns/TCC-QR-MENU/issues"
+  },
+  "homepage": "https://github.com/HYT-Foundation-Inc-Tech-Interns/TCC-QR-MENU#readme",
+  "dependencies": {
+    "mupdf": "^1.28.1",
+    "pdfjs-dist": "^3.11.174"
+  },
+  "allowScripts": {
+    "canvas@2.11.2": true
+  }
+}
