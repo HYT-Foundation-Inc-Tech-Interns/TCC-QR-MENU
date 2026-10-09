@@ -64,12 +64,12 @@
     var items = scrollTrack.querySelectorAll(".page-item");
     if (items.length === 0) return 0;
     var containerRect = scrollContainer.getBoundingClientRect();
-    var containerCenter = containerRect.top + containerRect.height / 2;
+    var containerCenter = containerRect.left + containerRect.width / 2;
     var closest = 0;
     var closestDist = Infinity;
     items.forEach(function (item, i) {
       var rect = item.getBoundingClientRect();
-      var center = rect.top + rect.height / 2;
+      var center = rect.left + rect.width / 2;
       var dist = Math.abs(center - containerCenter);
       if (dist < closestDist) {
         closestDist = dist;
@@ -82,7 +82,7 @@
   function scrollToPage(index) {
     var items = scrollTrack.querySelectorAll(".page-item");
     if (!items[index]) return;
-    items[index].scrollIntoView({ behavior: "smooth", inline: "center", block: "start" });
+    items[index].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   }
 
   function updateUI() {
@@ -108,12 +108,12 @@
 
   // ---------- Keyboard ----------
   document.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowUp") {
+    if (e.key === "ArrowLeft") {
       e.preventDefault();
       hideHint();
       if (currentPage > 0) { currentPage--; scrollToPage(currentPage); updateUI(); }
     }
-    else if (e.key === "ArrowDown") {
+    else if (e.key === "ArrowRight") {
       e.preventDefault();
       hideHint();
       if (currentPage < PAGES.length - 1) { currentPage++; scrollToPage(currentPage); updateUI(); }
