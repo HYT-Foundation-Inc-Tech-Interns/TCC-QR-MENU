@@ -46,7 +46,7 @@
   async function loadPdf() {
     try {
       if (!window.pdfjsLib) throw new Error("PDF.js not loaded");
-      const pdf = await pdfjsLib.getDocument("menu.pdf").promise;
+      const pdf = await pdfjsLib.getDocument("menu.pdf?t=" + Date.now()).promise;
       const total = pdf.numPages;
 
       // Pre-create placeholder slots so layout is stable as pages stream in
