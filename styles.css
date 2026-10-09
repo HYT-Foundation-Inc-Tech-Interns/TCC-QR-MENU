@@ -72,16 +72,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .page-item {
   flex: 0 0 auto;
   height: 100vh; height: 100dvh;
-  width: 100%;
+  width: 100vw;
   display: flex; align-items: center; justify-content: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  overflow: hidden;
 }
 .page-item img {
   height: 100%;
-  width: 100%;
-  max-width: none;
-  object-fit: cover;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
   background: var(--paper);
 }
 .page-placeholder {
