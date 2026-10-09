@@ -82,12 +82,27 @@
   function scrollToPage(index) {
     var items = scrollTrack.querySelectorAll(".page-item");
     if (!items[index]) return;
-    items[index].scrollIntoView({ behavior: "smooth", inline: "nearest", block: "start" });
+    var containerHeight = scrollContainer.clientHeight;
+    var itemTop = items[index].offsetTop;
+    var itemHeight = items[index].offsetHeight;
+    // Center the page in the viewport
+    var target = itemTop - (containerHeight - itemHeight) / 2;
+    if (target < 0) target = 0;
+    scrollContainer.scrollTo({ top: target, behavior: "smooth" });
   }
 
   function updateUI() {
     var total = PAGES.length;
     pageCounter.textContent = (currentPage + 1) + " / " + total;
+
+    var items = scrollTrack.querySelectorAll(".page-item");
+    items.forEach(function (item, i) {
+      if (i === currentPage) {
+        item.classList.add("active");
+      } else {
+        item.classList.remove("active");
+      }
+    });
   }
 
   // ---------- Scroll event (throttled via rAF) ----------
