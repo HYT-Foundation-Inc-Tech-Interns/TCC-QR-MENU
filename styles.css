@@ -75,8 +75,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .scroll-track {
   display: flex; align-items: center;
-  gap: 16px;
-  padding: 60px max(20px, env(safe-area-inset-right, 0px)) 60px max(20px, env(safe-area-inset-left, 0px));
+  gap: 0;
+  padding: 0;
   height: 100%;
 }
 
@@ -84,22 +84,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .page-item {
   flex: 0 0 auto;
   height: 100%;
+  width: 100vw;
   display: flex; align-items: center; justify-content: center;
 }
 .page-item img {
   height: 100%;
-  width: auto;
+  width: 100%;
   max-width: none;
-  object-fit: contain;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-page);
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: none;
   background: var(--paper);
 }
 .page-placeholder {
   height: 100%;
-  width: 40vw;
-  max-width: 300px;
-  border-radius: var(--radius);
+  width: 100vw;
+  border-radius: 0;
   background: rgba(255,255,255,0.06);
   animation: shimmer 1.2s ease-in-out infinite;
 }
