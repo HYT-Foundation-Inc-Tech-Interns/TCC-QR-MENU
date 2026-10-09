@@ -23,7 +23,7 @@
 html { -webkit-text-size-adjust: 100%; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  background: radial-gradient(ellipse at center, #5a3a26 0%, #3b2417 60%, #2a1810 100%);
+  background: #1a0e08;
   color: var(--text);
   height: 100vh; height: 100dvh;
   overflow: hidden;
@@ -77,14 +77,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   scroll-snap-align: start;
   scroll-snap-stop: always;
   overflow: hidden;
+  background: transparent;
 }
 .page-item img {
-  width: 100vw;
-  height: 100vh; height: 100dvh;
+  height: 100%;
+  width: 100%;
   max-width: none;
   max-height: none;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
+  object-position: center;
 }
 .page-placeholder {
   height: 100%;
